@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tori Dey Decision Making Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e9f5ec;
+      color: #333;
+      margin: 0;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .response {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #d0f0d0;
+      border-left: 5px solid #2e7d32;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="compass.png" alt="Tori Dey Compass" />
+    <form id="toriForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" required />
+
+      <label for="organization">Organization or Institution:</label>
+      <input type="text" id="organization" name="organization" required />
+
+      <label>What do you want the story to be about?</label>
+      <select id="storyType" name="storyType">
+        <option value="">No response</option>
+        <option value="process">The approach and methodology we employed/the way we did our work</option>
+        <option value="narrative">The way we worked and the results</option>
+        <option value="impact">The impact of our work on People’s lives</option>
+        <option value="creative">How scientific data can elicit artistic creativity</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="response" id="responseBox"></div>
+  </div>
+
+  <script>
+    document.getElementById('toriForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const storyType = document.getElementById('storyType').value;
+      let recommendation = "";
+      switch (storyType) {
+        case "process":
+          recommendation = "We recommend a Process Story.";
+          break;
+        case "narrative":
+          recommendation = "We recommend a Narrative Story.";
+          break;
+        case "impact":
+          recommendation = "We recommend an Impact Story.";
+          break;
+        case "creative":
+          recommendation = "We recommend a Creative Story.";
+          break;
+        default:
+          recommendation = "Please select a valid story type.";
+      }
+
+      const message = recommendation + " eBASE Africa has received your submission and will work with you to bring your story to life.";
+      const responseBox = document.getElementById('responseBox');
+      responseBox.style.display = "block";
+      responseBox.textContent = message;
+    });
+  </script>
+</body>
+</html>
